@@ -36,12 +36,12 @@ const ProgressBar = ({value, size}) => {
             aria-valuemin={0}
             aria-valuemax={100}
             aria-valuenow={value}
-            padding={styles.padding}
+            style={{'--padding': styles.padding + 'px', '--radius': styles.radius + 'px'}}
             radius={styles.radius}
         >
             <VisuallyHidden>{value}%</VisuallyHidden>
             <BarWrapper>
-                <Bar value={value} height={styles.height}/>
+                <Bar style={{'--height': styles.height + 'px', '--width': value + '%'}}/>
             </BarWrapper>
         </Wrapper>
     );
@@ -50,8 +50,8 @@ const ProgressBar = ({value, size}) => {
 const Wrapper = styled.div`
     background-color: ${COLORS.transparentGray15};
     box-shadow: inset 0 2px 4px ${COLORS.transparentGray35};
-    border-radius: ${props => props.radius + "px"};
-    padding: ${props => props.padding + "px"}
+    border-radius: var(--radius);
+    padding: var(--padding);
 `
 
 const BarWrapper = styled.div`
@@ -60,8 +60,8 @@ const BarWrapper = styled.div`
 `
 
 const Bar = styled.div`
-    width: ${props => props.value + "%"};
-    height: ${props => props.height + "px"};
+    width: var(--width);
+    height: var(--height);
     background-color: ${COLORS.primary};
 `;
 
